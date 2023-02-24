@@ -1,0 +1,327 @@
+---
+title: "Class 12: RNASeq"
+author: "Suzanne Enos"
+format: pdf
+---
+# Import the data
+
+Count data is the number of reads for each gene for each sample.
+Col data/metadata is information about the samples and columns of data.
+
+```{r}
+counts <- read.csv("airway_scaledcounts.csv", row.names = 1)
+metadata <- read.csv("airway_metadata.csv")
+```
+
+```{r}
+head(counts)
+head(metadata)
+```
+
+```{r}
+metadata$id == colnames(counts)
+```
+
+```{r}
+all(metadata$id == colnames(counts))
+```
+
+> Q1. How many genes are in the dataset?
+
+```{r}
+nrow(counts)
+```
+
+> Q2. How many control cell lines do we have?
+
+```{r}
+sum(metadata$dex == "control")
+```
+
+> Q3. How would you make the above code more robust?
+
+```{r}
+control.id <- metadata[metadata$dex == "control",]$id
+```
+
+> Q4. Q4. Follow the same procedure for the treated samples (i.e. calculate the mean per gene across drug treated samples and assign to a labeled vector called treated.mean)
+
+```{r}
+control.counts <- counts[, control.id]
+head(control.counts)
+```
+
+```{r}
+control.mean <- rowMeans(control.counts)
+head(control.mean)
+```
+
+```{r}
+control.treated <- metadata[metadata$dex == "treated",]$id
+
+treated.counts <- counts[, control.treated]
+head(control.treated)
+```
+
+```{r}
+treated.mean <- rowMeans(treated.counts)
+head(treated.mean)
+```
+
+Reorganize to create meancounts dataframe.
+
+```{r}
+mean.counts <- data.frame(control.mean, treated.mean)
+head(mean.counts)
+```
+
+```{r}
+colSums(mean.counts)
+```
+
+> Q5. Scatterplot of meancounts
+
+```{r}
+plot(mean.counts)
+```
+
+```{r}
+library(ggplot2)
+
+ggplot(mean.counts) +
+  aes(control.mean, treated.mean) +
+  geom_point(alpha = 0.3) +
+  theme_bw()
+```
+
+Data is very skewed.
+
+Q6. Try plotting both axes on a log scale. What is the argument to plot() that allows you to do this?
+
+```{r}
+plot(mean.counts, log = "xy")
+```
+We usually look at the log2 of the fold change, because this has better mathematical properties.
+
+Here we calculate log2foldchange, add it to our meancounts data.frame and inspect the results either with the head() or the View() function for example.
+
+```{r}
+mean.counts$log2fc <- log2(mean.counts$treated.mean/mean.counts$control.mean)
+head(mean.counts)
+```
+
+Filter to remove genes with zero expression
+
+```{r}
+to.keep <- rowSums(mean.counts[,1:2] == 0) == 0
+my.counts <- mean.counts[to.keep,]
+nrow(my.counts)
+```
+
+```{r}
+head(my.counts)
+```
+
+> Q8. How many genes are upregulated? (log2fc threshold of +2)
+
+Log fold change of 2 means a 4 fold change - above +2 means upregulated genes, below -2 means downregulated genes
+
+```{r}
+sum(my.counts$log2fc >= +2)
+```
+
+> Q9. How many genes are downregulated?
+
+```{r}
+sum(my.counts$log2fc <= -2)
+```
+
+> Q10. Do you trust these results?
+
+No, because we're missing statistical significance values.
+
+# DESeq
+
+```{r}
+library(DESeq2)
+citation("DESeq2")
+```
+
+```{r}
+dds <- DESeqDataSetFromMatrix(countData = counts, 
+                              colData = metadata, 
+                              design = ~dex)
+dds
+```
+
+DESeq analysis
+
+```{r}
+dds <- DESeq(dds)
+```
+
+Getting results
+
+```{r}
+res <- results(dds)
+head(res)
+```
+
+# Volcano plot
+
+```{r}
+plot(res$log2FoldChange, res$padj)
+```
+
+Data we care about is values with low padj so need a log transform, then axis flip.
+
+```{r}
+plot(res$log2FoldChange, -log(res$padj))
+```
+
+```{r}
+mycols <- rep("gray", nrow(res))
+
+mycols[res$log2FoldChange >= +2] <- "blue"
+
+mycols[res$log2FoldChange <= -2] <- "blue"
+
+mycols[res$padj > 0.05] <- "gray"
+
+plot(res$log2FoldChange, -log(res$padj), col = mycols)
+abline(v=c(-2,+2), lty = 2)
+```
+
+# Adding annotation data
+
+Using AnnotationDbi package to help with mapping between various ID schemes
+
+```{r}
+library("AnnotationDbi")
+library("org.Hs.eg.db")
+```
+
+List of all available key types we can use to map between 
+
+```{r}
+columns(org.Hs.eg.db)
+```
+
+```{r}
+res$symbol <- mapIds(org.Hs.eg.db,
+                     keys=row.names(res), # Our genenames
+                     keytype="ENSEMBL",        # The format of our genenames
+                     column="SYMBOL",          # The new format we want to add
+                     multiVals="first")
+```
+
+```{r}
+head(res)
+```
+> Q11. Run the mapIds() function two more times to add the Entrez ID and UniProt accession and GENENAME as new columns called res$entrez, res$uniprot and res$genename.
+
+```{r}
+res$entrez <- mapIds(org.Hs.eg.db,
+                     keys=row.names(res), # Our genenames
+                     keytype="ENSEMBL",        # The format of our genenames
+                     column="ENTREZID",          # The new format we want to add
+                     multiVals="first")
+```
+
+```{r}
+res$genename <- mapIds(org.Hs.eg.db,
+                     keys=row.names(res), # Our genenames
+                     keytype="ENSEMBL",        # The format of our genenames
+                     column="GENENAME",          # The new format we want to add
+                     multiVals="first")
+```
+
+```{r}
+res$uniprot <- mapIds(org.Hs.eg.db,
+                     keys=row.names(res), # Our genenames
+                     keytype="ENSEMBL",        # The format of our genenames
+                     column="UNIPROT",          # The new format we want to add
+                     multiVals="first")
+```
+
+```{r}
+head(res)
+```
+
+Arrange and view the results by the adjusted p-value.
+
+```{r}
+ord <- order(res$padj)
+
+write.csv(res[ord,], "deseq_results.csv")
+```
+
+```{r}
+plot( res$log2FoldChange,  -log(res$padj), 
+      xlab="Log2(FoldChange)",
+      ylab="-Log(P-value)")
+```
+
+```{r}
+# Setup our custom point color vector 
+mycols <- rep("gray", nrow(res))
+mycols[ abs(res$log2FoldChange) > 2 ]  <- "red" 
+
+inds <- (res$padj < 0.01) & (abs(res$log2FoldChange) > 2 )
+mycols[ inds ] <- "blue"
+
+# Volcano plot with custom colors 
+plot( res$log2FoldChange,  -log(res$padj), 
+ col=mycols, ylab="-Log(P-value)", xlab="Log2(FoldChange)" )
+
+# Cut-off lines
+abline(v=c(-2,2), col="gray", lty=2)
+abline(h=-log(0.1), col="gray", lty=2)
+```
+
+
+# Pathway Analysis
+
+Will make a vector of importance
+
+```{r}
+foldchange <- res$log2FoldChange
+names(foldchange) <- res$entrez
+head(foldchange)
+```
+
+Can add names to a vector
+
+```{r}
+x <- c(1, 5, 4)
+names(x) <- c("")
+```
+
+```{r}
+library(gage)
+library(gageData)
+library(pathview)
+```
+
+```{r}
+data(kegg.sets.hs)
+
+gs <- gage(foldchange, gsets = kegg.sets.hs)
+```
+
+```{r}
+attributes(gs)
+```
+
+```{r}
+head(gs$less, 3)
+```
+
+```{r}
+pathview(gene.data=foldchange, pathway.id="hsa05310")
+```
+
+```{r}
+#![](hsa05310.pathview.png)
+```
+

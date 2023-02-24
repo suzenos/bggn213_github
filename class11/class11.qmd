@@ -1,0 +1,67 @@
+---
+title: "Class 11: Genomics"
+author: "Suzanne Enos"
+format: pdf
+---
+> Q5: What proportion of the Mexican Ancestry in Los Angeles sample population (MXL) are homozygous for the asthma associated SNP (G|G)? 
+
+```{r}
+gene <- read.csv("rs8067378.csv", row.names = 1)
+head(gene)
+```
+
+```{r}
+table(gene$Genotype..forward.strand.)
+```
+
+```{r}
+table(gene$Genotype..forward.strand.)/nrow(gene)
+```
+
+
+
+# Population Scale Analysis
+
+> Q13. Read this file into R and determine the sample size for each genotype and their
+corresponding median expression levels for each of these genotypes.
+
+```{r}
+results <- read.table("rs8067378_ENSG00000172057.6.txt")
+head(results)
+```
+
+```{r}
+summary(results)
+```
+
+```{r}
+table(results$geno)
+```
+
+
+```{r}
+inds <- results$geno == "G/G"
+summary(results$exp[inds])
+```
+
+```{r}
+inds <- results$geno == "A/G"
+summary(results$exp[inds])
+```
+
+```{r}
+inds <- results$geno == "A/A"
+summary(results$exp[inds])
+```
+
+>Q14. Generate a boxplot with a box per genotype, what could you infer from the relative expression value between A/A and G/G displayed in this plot? Does the SNP effect the expression of ORMDL3?
+
+```{r}
+library(ggplot2)
+
+ggplot(results) + 
+  aes(geno, exp, col = geno) +
+  geom_boxplot(notch = T) +
+  geom_jitter(alpha = 0.3, width = 0.3)
+```
+

@@ -1,0 +1,157 @@
+---
+title: "Class 9: Structural Bioinformatics"
+author: "Suzanne Enos"
+format: pdf
+---
+
+```{r}
+pdbstats <- read.csv("Data Export Summary.csv", row.names = 1)
+knitr:: kable(pdbstats)
+```
+> Q1: What percentage of structures in the PDB are solved by X-Ray and Electron Microscopy.
+
+Need to remove commas from values to make numeric.
+```{r}
+n.xray <- sum(as.numeric(gsub(",", "", pdbstats$X.ray)))
+n.xray
+```
+```{r}
+n.em <- sum(as.numeric(gsub(",", "", pdbstats$EM)))
+n.em
+```
+
+```{r}
+n.total <- sum(as.numeric(gsub(",", "", pdbstats$Total)))
+n.total
+```
+```{r}
+n.xray/n.total
+n.em/n.total
+```
+
+I am doing the same thing three times, so I should write a function.
+
+```{r}
+rm_commas_sum <- function(x) {
+  sum(as.numeric(gsub(",", "", x)))
+}
+rm_commas_sum(pdbstats$X.ray)
+```
+```{r}
+rm_commas_sum(pdbstats$X.ray)/rm_commas_sum(pdbstats$Total)
+rm_commas_sum(pdbstats$EM)/rm_commas_sum(pdbstats$Total)
+```
+
+
+> Q2: What proportion of structures in the PDB are protein?
+
+```{r}
+rm_commas_sum(pdbstats$Total[1])/rm_commas_sum(pdbstats$Total)
+```
+
+> Q3: Type HIV in the PDB website search box on the home page and determine how many HIV-1 protease structures are in the current PDB?
+
+Hard to find. >200,000 search results. >2,000 protease results
+Bad to search with text, better to search with sequence/structure
+
+# Molstar
+
+![A rendering of HIV-1 Pr with an important drug](1HSG.png)
+
+# Let's do some bioinformatics
+
+We are going to use the `bio3d` package for structural bioinformatics.
+```{r}
+library(bio3d)
+
+p <- read.pdb("1hsg")
+p
+```
+
+```{r}
+head(p$atom)
+```
+
+```{r}
+p$atom[1, "resid"]
+p$atom$resid[1]
+```
+
+```{r}
+aa321( p$atom$resid[1])
+```
+
+# Let's do a Normal Mode Analysis (NMA)
+
+```{r}
+#Read an input structure
+adk <- read.pdb("6s36")
+adk
+```
+
+```{r}
+#Do our NMA
+m <- nma(adk)
+plot(m)
+```
+
+Make a vid of this motion for Molstar
+
+```{r}
+#Make a trajectory file
+mktrj(m, file="adk_m7.pdb")
+```
+
+# PCA - Comparative structure analysis of Adenylate Kinase
+
+First, extract the sequence
+
+```{r}
+aa <- get.seq("1ake_a")
+aa
+```
+
+```{r}
+#b <- blast.pdb(aa)
+```
+
+```{r}
+#hits <- plot(b)
+```
+
+```{r}
+#hits
+```
+
+```{r}
+hits <- NULL
+hits$pdb.id <- c('1AKE_A','6S36_A','6RZE_A','3HPR_A','1E4V_A','5EJE_A','1E4Y_A','3X2S_A','6HAP_A','6HAM_A','4K46_A','3GMT_A','4PZL_A')
+```
+
+```{r}
+# Download related PDB files
+files <- get.pdb(hits$pdb.id, path = "pdbs", split = T, gzip = T)
+```
+
+# Align and superpose (fit on top of each other)
+
+```{r}
+#Align related pdbs
+pdbs <- pdbaln(files, fit = T, exefile = "msa")
+```
+
+```{r}
+pdbs
+```
+```{r}
+# Perform PCA
+pc.xray <- pca(pdbs)
+plot(pc.xray)
+```
+
+Make a trajectory of the displacements captured by the PCA
+
+```{r}
+mktrj(pc.xray, pc = 1, file = "pc_1.pdb")
+```
+
