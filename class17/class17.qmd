@@ -1,0 +1,6 @@
+---
+title: "Class 17: Vaccination Rate Mini Project"
+author: "Suzanne Enos"
+format: html
+---
+
