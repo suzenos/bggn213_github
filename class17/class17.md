@@ -265,13 +265,13 @@ library(lubridate)
 today()
 ```
 
-    [1] "2023-03-08"
+    [1] "2023-03-17"
 
 ``` r
 today() - ymd(vax$as_of_date[1])
 ```
 
-    Time difference of 792 days
+    Time difference of 801 days
 
 How old am I in days?
 
@@ -279,7 +279,7 @@ How old am I in days?
 today() - ymd("2000-01-27")
 ```
 
-    Time difference of 8441 days
+    Time difference of 8450 days
 
 > Q9. How many days have passed since the last update of the dataset?
 
@@ -287,7 +287,7 @@ today() - ymd("2000-01-27")
 today() - ymd(vax$as_of_date[nrow(vax)])
 ```
 
-    Time difference of 1 days
+    Time difference of 10 days
 
 ``` r
 vax$as_of_date <- ymd(vax$as_of_date)
@@ -297,7 +297,7 @@ vax$as_of_date <- ymd(vax$as_of_date)
 today() - vax$as_of_date[nrow(vax)]
 ```
 
-    Time difference of 1 days
+    Time difference of 10 days
 
 > Q10. How many unique dates are in the dataset (i.e. how many different
 > dates are detailed)?
