@@ -1,10 +1,10 @@
 ---
 title: "Class 7: Machine Learning 1"
 author: "Suzanne Enos"
-format: pdf
+format: gfm
 ---
 In this class, we will explore and get practice with clustering and Principal Component Analysis (PCA)
-#Clustering with K-means
+# Clustering with K-means
 
 First we will make up some data to cluster where we know what the result should be.
 
@@ -104,7 +104,7 @@ plot(totss, typ = "o")
 
 Inflection point at 2 totss. 2 clusters is best.
 
-#Hierarchical Clustering
+# Hierarchical Clustering
 
 We cannot just give the `hclust()` function of input data `x` like we did for `kmeans()`.
 
@@ -138,7 +138,7 @@ grps <- cutree(hc, k=2)
 plot(x, col = grps)
 ```
 
-#Principal Component Analysis (PCA)
+# Principal Component Analysis (PCA)
 PCA projects the features onto the principal components. The motivation is to reduce the feature's dimensionality.
 
 The main base R function to do PCA is called `prcomp()`.
