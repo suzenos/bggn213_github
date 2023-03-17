@@ -4,9 +4,11 @@ author: "Suzanne Enos"
 format: gfm
 ---
 
+
 # Plotting in R
 
 R has many plotting and visualization systems including "base" R.
+
 
 ```{r}
 head(cars)
@@ -16,18 +18,22 @@ head(cars)
 plot(cars)
 ```
 
+
 Base R plots can be quite simple for basic plots when compared to systems like ggplot
+
 
 ```{r}
 library(ggplot2)
 ggplot(cars)
 ```
 
+
 Every ggplot needs at least three things
 
 -   **Data** (data.frame with what we want to plot)
 -   **Aesthetics** (aes - how the data map to the plot)
 -   **Geometry** (geoms - type of plot)
+
 
 ```{r}
 ggplot(cars) + 
@@ -38,9 +44,11 @@ ggplot(cars) +
 
 
 
+
 ## A plot of some gene expression data
 
 The code to read the data:
+
 
 ```{r}
 url <- "https://bioboot.github.io/bimm143_S20/class-material/up_down_expression.txt"
@@ -48,15 +56,19 @@ genes <- read.delim(url)
 head(genes)
 ```
 
+
 > Q. How many genes are in this dataset?
+
 
 ```{r}
 nrow(genes)
 ```
 
+
 There are 'r nrow(genes)' genes in this dataset.
 
 > How many genes are up-regulated?
+
 
 ```{r}
 table(genes$State)
@@ -72,7 +84,9 @@ p <- ggplot(genes) +
   geom_point() 
 p
 ```
+
 Can save ggplot object as 'p' to use later and add layers p + __.
+
 
 ```{r}
 p + scale_colour_manual( values=c("blue","gray","red") ) + 
@@ -88,31 +102,37 @@ library(dplyr)
 gapminder_2007 <- gapminder %>% filter(year==2007)
 ```
 
+
 > Q. How many countries are in this dataset?
+
 
 ```{r}
 length(unique(gapminder$country))
 ```
+
 > How many years do we have data for?
+
 
 ```{r}
 range(gapminder$year)
 ```
 
+
 > Which country has the smallest population?
 What is the the smallest pop
+
 
 ```{r}
 min(gapminder$pop)
 ```
 
+
 > First, where is this min value in the pop vector
+
 
 ```{r}
 ind <- which.min(gapminder$pop)
 ```
-
-
 
 ```{r}
 gapminder$country[ind]
