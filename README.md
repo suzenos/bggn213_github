@@ -23,4 +23,4 @@ My classwork from [BGGN 213](https://bioboot.github.io/bggn213_W23/) at UC San D
 
 - Class 17 [Vaccination Rate Mini-Project](https://github.com/suzenos/bggn213_github/blob/main/class17/class17.md)
 
-- Class 18 [Vaccine Mini-Project](https://github.com/suzenos/bggn213_github/blob/main/class19/class19.md)
+- Class 19 [Vaccine Mini-Project](https://github.com/suzenos/bggn213_github/blob/main/class19/class19.md)
