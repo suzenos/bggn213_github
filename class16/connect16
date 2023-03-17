@@ -1,0 +1,3 @@
+i-044bbd8c7175a7fd9
+ssh -i "bggn_senos.pem" ubuntu@ec2-52-26-129-207.us-west-2.compute.amazonaws.com
+scp -r -i "bggn_senos.pem" ubuntu@ec2-52-26-129-207.us-west-2.compute.amazonaws.com:~/*_quant .
