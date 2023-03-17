@@ -70,239 +70,38 @@ library("skimr")
 skim(candy)
 ```
 
-<table>
-<caption>Data summary</caption>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;">Name</td>
-<td style="text-align: left;">candy</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Number of rows</td>
-<td style="text-align: left;">85</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Number of columns</td>
-<td style="text-align: left;">12</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">_______________________</td>
-<td style="text-align: left;"></td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Column type frequency:</td>
-<td style="text-align: left;"></td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">numeric</td>
-<td style="text-align: left;">12</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">________________________</td>
-<td style="text-align: left;"></td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Group variables</td>
-<td style="text-align: left;">None</td>
-</tr>
-</tbody>
-</table>
+|                                                  |       |
+|:-------------------------------------------------|:------|
+| Name                                             | candy |
+| Number of rows                                   | 85    |
+| Number of columns                                | 12    |
+| \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_   |       |
+| Column type frequency:                           |       |
+| numeric                                          | 12    |
+| \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_ |       |
+| Group variables                                  | None  |
 
 Data summary
 
 **Variable type: numeric**
 
-<table style="width:100%;">
-<colgroup>
-<col style="width: 19%" />
-<col style="width: 11%" />
-<col style="width: 15%" />
-<col style="width: 6%" />
-<col style="width: 6%" />
-<col style="width: 6%" />
-<col style="width: 6%" />
-<col style="width: 6%" />
-<col style="width: 6%" />
-<col style="width: 6%" />
-<col style="width: 6%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th style="text-align: left;">skim_variable</th>
-<th style="text-align: right;">n_missing</th>
-<th style="text-align: right;">complete_rate</th>
-<th style="text-align: right;">mean</th>
-<th style="text-align: right;">sd</th>
-<th style="text-align: right;">p0</th>
-<th style="text-align: right;">p25</th>
-<th style="text-align: right;">p50</th>
-<th style="text-align: right;">p75</th>
-<th style="text-align: right;">p100</th>
-<th style="text-align: left;">hist</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;">chocolate</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">0.44</td>
-<td style="text-align: right;">0.50</td>
-<td style="text-align: right;">0.00</td>
-<td style="text-align: right;">0.00</td>
-<td style="text-align: right;">0.00</td>
-<td style="text-align: right;">1.00</td>
-<td style="text-align: right;">1.00</td>
-<td style="text-align: left;">▇▁▁▁▆</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">fruity</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">0.45</td>
-<td style="text-align: right;">0.50</td>
-<td style="text-align: right;">0.00</td>
-<td style="text-align: right;">0.00</td>
-<td style="text-align: right;">0.00</td>
-<td style="text-align: right;">1.00</td>
-<td style="text-align: right;">1.00</td>
-<td style="text-align: left;">▇▁▁▁▆</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">caramel</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">0.16</td>
-<td style="text-align: right;">0.37</td>
-<td style="text-align: right;">0.00</td>
-<td style="text-align: right;">0.00</td>
-<td style="text-align: right;">0.00</td>
-<td style="text-align: right;">0.00</td>
-<td style="text-align: right;">1.00</td>
-<td style="text-align: left;">▇▁▁▁▂</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">peanutyalmondy</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">0.16</td>
-<td style="text-align: right;">0.37</td>
-<td style="text-align: right;">0.00</td>
-<td style="text-align: right;">0.00</td>
-<td style="text-align: right;">0.00</td>
-<td style="text-align: right;">0.00</td>
-<td style="text-align: right;">1.00</td>
-<td style="text-align: left;">▇▁▁▁▂</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">nougat</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">0.08</td>
-<td style="text-align: right;">0.28</td>
-<td style="text-align: right;">0.00</td>
-<td style="text-align: right;">0.00</td>
-<td style="text-align: right;">0.00</td>
-<td style="text-align: right;">0.00</td>
-<td style="text-align: right;">1.00</td>
-<td style="text-align: left;">▇▁▁▁▁</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">crispedricewafer</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">0.08</td>
-<td style="text-align: right;">0.28</td>
-<td style="text-align: right;">0.00</td>
-<td style="text-align: right;">0.00</td>
-<td style="text-align: right;">0.00</td>
-<td style="text-align: right;">0.00</td>
-<td style="text-align: right;">1.00</td>
-<td style="text-align: left;">▇▁▁▁▁</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">hard</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">0.18</td>
-<td style="text-align: right;">0.38</td>
-<td style="text-align: right;">0.00</td>
-<td style="text-align: right;">0.00</td>
-<td style="text-align: right;">0.00</td>
-<td style="text-align: right;">0.00</td>
-<td style="text-align: right;">1.00</td>
-<td style="text-align: left;">▇▁▁▁▂</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">bar</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">0.25</td>
-<td style="text-align: right;">0.43</td>
-<td style="text-align: right;">0.00</td>
-<td style="text-align: right;">0.00</td>
-<td style="text-align: right;">0.00</td>
-<td style="text-align: right;">0.00</td>
-<td style="text-align: right;">1.00</td>
-<td style="text-align: left;">▇▁▁▁▂</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">pluribus</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">0.52</td>
-<td style="text-align: right;">0.50</td>
-<td style="text-align: right;">0.00</td>
-<td style="text-align: right;">0.00</td>
-<td style="text-align: right;">1.00</td>
-<td style="text-align: right;">1.00</td>
-<td style="text-align: right;">1.00</td>
-<td style="text-align: left;">▇▁▁▁▇</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">sugarpercent</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">0.48</td>
-<td style="text-align: right;">0.28</td>
-<td style="text-align: right;">0.01</td>
-<td style="text-align: right;">0.22</td>
-<td style="text-align: right;">0.47</td>
-<td style="text-align: right;">0.73</td>
-<td style="text-align: right;">0.99</td>
-<td style="text-align: left;">▇▇▇▇▆</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">pricepercent</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">0.47</td>
-<td style="text-align: right;">0.29</td>
-<td style="text-align: right;">0.01</td>
-<td style="text-align: right;">0.26</td>
-<td style="text-align: right;">0.47</td>
-<td style="text-align: right;">0.65</td>
-<td style="text-align: right;">0.98</td>
-<td style="text-align: left;">▇▇▇▇▆</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">winpercent</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">50.32</td>
-<td style="text-align: right;">14.71</td>
-<td style="text-align: right;">22.45</td>
-<td style="text-align: right;">39.14</td>
-<td style="text-align: right;">47.83</td>
-<td style="text-align: right;">59.86</td>
-<td style="text-align: right;">84.18</td>
-<td style="text-align: left;">▃▇▆▅▂</td>
-</tr>
-</tbody>
-</table>
+| skim_variable    | n_missing | complete_rate |  mean |    sd |    p0 |   p25 |   p50 |   p75 |  p100 | hist  |
+|:-----------------|----------:|--------------:|------:|------:|------:|------:|------:|------:|------:|:------|
+| chocolate        |         0 |             1 |  0.44 |  0.50 |  0.00 |  0.00 |  0.00 |  1.00 |  1.00 | ▇▁▁▁▆ |
+| fruity           |         0 |             1 |  0.45 |  0.50 |  0.00 |  0.00 |  0.00 |  1.00 |  1.00 | ▇▁▁▁▆ |
+| caramel          |         0 |             1 |  0.16 |  0.37 |  0.00 |  0.00 |  0.00 |  0.00 |  1.00 | ▇▁▁▁▂ |
+| peanutyalmondy   |         0 |             1 |  0.16 |  0.37 |  0.00 |  0.00 |  0.00 |  0.00 |  1.00 | ▇▁▁▁▂ |
+| nougat           |         0 |             1 |  0.08 |  0.28 |  0.00 |  0.00 |  0.00 |  0.00 |  1.00 | ▇▁▁▁▁ |
+| crispedricewafer |         0 |             1 |  0.08 |  0.28 |  0.00 |  0.00 |  0.00 |  0.00 |  1.00 | ▇▁▁▁▁ |
+| hard             |         0 |             1 |  0.18 |  0.38 |  0.00 |  0.00 |  0.00 |  0.00 |  1.00 | ▇▁▁▁▂ |
+| bar              |         0 |             1 |  0.25 |  0.43 |  0.00 |  0.00 |  0.00 |  0.00 |  1.00 | ▇▁▁▁▂ |
+| pluribus         |         0 |             1 |  0.52 |  0.50 |  0.00 |  0.00 |  1.00 |  1.00 |  1.00 | ▇▁▁▁▇ |
+| sugarpercent     |         0 |             1 |  0.48 |  0.28 |  0.01 |  0.22 |  0.47 |  0.73 |  0.99 | ▇▇▇▇▆ |
+| pricepercent     |         0 |             1 |  0.47 |  0.29 |  0.01 |  0.26 |  0.47 |  0.65 |  0.98 | ▇▇▇▇▆ |
+| winpercent       |         0 |             1 | 50.32 | 14.71 | 22.45 | 39.14 | 47.83 | 59.86 | 84.18 | ▃▇▆▅▂ |
 
-> Q7. What do you think a zero and one represent for the candy$chocolate
-> column?
+> Q7. What do you think a zero and one represent for the
+> candy\$chocolate column?
 
 Whether or not the candy is chocolate. 0 = F, 1 = T
 
@@ -312,7 +111,7 @@ Whether or not the candy is chocolate. 0 = F, 1 = T
 hist(candy$winpercent, breaks = 6)
 ```
 
-![](class10.markdown_strict_files/figure-markdown_strict/unnamed-chunk-8-1.png)
+![](class10_files/figure-commonmark/unnamed-chunk-8-1.png)
 
 > Q9. Is the distribution of winpercent values symmetrical?
 
@@ -421,7 +220,7 @@ ggplot(candy) +
   geom_col()
 ```
 
-![](class10.markdown_strict_files/figure-markdown_strict/unnamed-chunk-14-1.png)
+![](class10_files/figure-commonmark/unnamed-chunk-14-1.png)
 
 > Q16. This is quite ugly, use the reorder() function to get the bars
 > sorted by winpercent?
@@ -432,7 +231,7 @@ ggplot(candy) +
   geom_col()
 ```
 
-![](class10.markdown_strict_files/figure-markdown_strict/unnamed-chunk-15-1.png)
+![](class10_files/figure-commonmark/unnamed-chunk-15-1.png)
 
 ``` r
 my_cols=rep("black", nrow(candy))
@@ -447,7 +246,7 @@ ggplot(candy) +
   geom_col(fill=my_cols) 
 ```
 
-![](class10.markdown_strict_files/figure-markdown_strict/unnamed-chunk-17-1.png)
+![](class10_files/figure-commonmark/unnamed-chunk-17-1.png)
 
 > Q17. What is the worst ranked chocolate candy?
 
@@ -470,7 +269,7 @@ ggplot(candy) +
     Warning: ggrepel: 15 unlabeled data points (too many overlaps). Consider
     increasing max.overlaps
 
-![](class10.markdown_strict_files/figure-markdown_strict/unnamed-chunk-18-1.png)
+![](class10_files/figure-commonmark/unnamed-chunk-18-1.png)
 
 > Q19. Which candy type is the highest ranked in terms of winpercent for
 > the least money - i.e. offers the most bang for your buck?
@@ -509,7 +308,7 @@ ggplot(candy) +
   geom_segment(aes(yend=reorder(rownames(candy), pricepercent), xend=0), col = "gray40") + geom_point()
 ```
 
-![](class10.markdown_strict_files/figure-markdown_strict/unnamed-chunk-21-1.png)
+![](class10_files/figure-commonmark/unnamed-chunk-21-1.png)
 
 # Exploring the correlation structure
 
@@ -524,7 +323,7 @@ cij <- cor(candy)
 corrplot(cij)
 ```
 
-![](class10.markdown_strict_files/figure-markdown_strict/unnamed-chunk-23-1.png)
+![](class10_files/figure-commonmark/unnamed-chunk-23-1.png)
 
 > Q22. Examining this plot what two variables are anti-correlated
 > (i.e. have minus values)?
@@ -567,13 +366,13 @@ pca$rotation[,1]
 plot(pca$x[,])
 ```
 
-![](class10.markdown_strict_files/figure-markdown_strict/unnamed-chunk-25-1.png)
+![](class10_files/figure-commonmark/unnamed-chunk-25-1.png)
 
 ``` r
 plot(pca$x[, 1:2], col = my_cols, pch = 16)
 ```
 
-![](class10.markdown_strict_files/figure-markdown_strict/unnamed-chunk-26-1.png)
+![](class10_files/figure-commonmark/unnamed-chunk-26-1.png)
 
 Make a new data-frame with PCA results and candy data
 
@@ -592,7 +391,7 @@ p <- ggplot(my_data) +
 p
 ```
 
-![](class10.markdown_strict_files/figure-markdown_strict/unnamed-chunk-28-1.png)
+![](class10_files/figure-commonmark/unnamed-chunk-28-1.png)
 
 ``` r
 library(ggrepel)
@@ -607,7 +406,7 @@ p + geom_text_repel(size=3.3, col=my_cols, max.overlaps = 7)  +
     Warning: ggrepel: 39 unlabeled data points (too many overlaps). Consider
     increasing max.overlaps
 
-![](class10.markdown_strict_files/figure-markdown_strict/unnamed-chunk-29-1.png)
+![](class10_files/figure-commonmark/unnamed-chunk-29-1.png)
 
 ``` r
 #library(plotly)
@@ -619,4 +418,4 @@ par(mar=c(8,4,2,2))
 barplot(pca$rotation[,1], las=2, ylab="PC1 Contribution")
 ```
 
-![](class10.markdown_strict_files/figure-markdown_strict/unnamed-chunk-31-1.png)
+![](class10_files/figure-commonmark/unnamed-chunk-31-1.png)
