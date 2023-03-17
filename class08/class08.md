@@ -182,8 +182,8 @@ Before doing anything like PCA, t is important to check if the data need
 to be scaled before performing PCA. Recall two common reasons for
 scaling data include:
 
--   The input variables use different units of measurement.
--   The input variables have significantly different variances.
+- The input variables use different units of measurement.
+- The input variables have significantly different variances.
 
 ``` r
 round(apply(wisc.data, 2, sd), 2)
@@ -265,7 +265,7 @@ pve <- pr.var/sum(pr.var)
 plot(pve, type = "o")
 ```
 
-![](class08.markdown_strict_files/figure-markdown_strict/unnamed-chunk-11-1.png)
+![](class08_files/figure-commonmark/unnamed-chunk-11-1.png)
 
 PC3 looks like inflection point.
 
@@ -282,7 +282,7 @@ ggplot(pc) +
   geom_point()
 ```
 
-![](class08.markdown_strict_files/figure-markdown_strict/unnamed-chunk-12-1.png)
+![](class08_files/figure-commonmark/unnamed-chunk-12-1.png)
 
 ## Hierarchical clustering
 
@@ -342,7 +342,7 @@ wisc.hclust
 plot(wisc.hclust)
 ```
 
-![](class08.markdown_strict_files/figure-markdown_strict/unnamed-chunk-17-1.png)
+![](class08_files/figure-commonmark/unnamed-chunk-17-1.png)
 
 > Q10. Using the plot() and abline() functions, what is the height at
 > which the clustering model has 4 clusters?
@@ -352,7 +352,7 @@ plot(wisc.hclust)
 abline(h=19, col="red", lty = 2)
 ```
 
-![](class08.markdown_strict_files/figure-markdown_strict/unnamed-chunk-18-1.png)
+![](class08_files/figure-commonmark/unnamed-chunk-18-1.png)
 
 To get a cluster membership vector I will use the `cutree()` function
 and “cut” into 4 or so grps or clusters
@@ -390,7 +390,7 @@ wisc.pr.hclust <- hclust(pc.dist, method = "ward.D2")
 plot(wisc.pr.hclust)
 ```
 
-![](class08.markdown_strict_files/figure-markdown_strict/unnamed-chunk-21-1.png)
+![](class08_files/figure-commonmark/unnamed-chunk-21-1.png)
 
 This dendrogram shows two main clusters - are these malignant and
 benign?
@@ -482,7 +482,7 @@ levels(g)
 plot(wisc.pr$x[,1:2], col=g)
 ```
 
-![](class08.markdown_strict_files/figure-markdown_strict/unnamed-chunk-30-1.png)
+![](class08_files/figure-commonmark/unnamed-chunk-30-1.png)
 
 ``` r
 plot(wisc.pr$x[,1:2], col=g)
@@ -490,7 +490,7 @@ points(npc[,1], npc[,2], col="blue", pch=16, cex=3)
 text(npc[,1], npc[,2], c(1,2), col="white")
 ```
 
-![](class08.markdown_strict_files/figure-markdown_strict/unnamed-chunk-31-1.png)
+![](class08_files/figure-commonmark/unnamed-chunk-31-1.png)
 
 > Q16. Which of these new patients should we prioritize for follow up
 > based on your results? Should prioritize follow up with patient 2
