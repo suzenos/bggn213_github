@@ -2,7 +2,7 @@ Class 5: Data Visualization
 ================
 Suzanne Enos
 
-\#Plotting in R
+# Plotting in R
 
 R has many plotting and visualization systems including “base” R.
 
@@ -51,7 +51,7 @@ ggplot(cars) +
 
 ![](class05_files/figure-commonmark/unnamed-chunk-3-1.png)
 
-\##A plot of some gene expression data
+## A plot of some gene expression data
 
 The code to read the data:
 
